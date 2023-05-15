@@ -1,8 +1,9 @@
-../App/MAX22200/MAX22200_driver.cpp:57:6:void MAX22200::MAX22200_init(const MAX22200_StatusReg*)	24	static
-../App/MAX22200/MAX22200_driver.cpp:77:10:uint8_t MAX22200::MAX22200_write_register(uint8_t, uint32_t)	32	static
-../App/MAX22200/MAX22200_driver.cpp:105:10:uint32_t MAX22200::MAX22200_read_register(uint8_t)	32	static
-../App/MAX22200/MAX22200_driver.cpp:169:10:uint32_t MAX22200::MAX22200_Set_CH(uint8_t, uint8_t, uint8_t, uint8_t, uint8_t, uint8_t, uint8_t, uint8_t, uint8_t, uint8_t, uint8_t, uint8_t, uint8_t)	24	static
-../App/MAX22200/MAX22200_driver.cpp:217:6:void MAX22200::MAX22200_print_all_registers()	24	static
-../App/MAX22200/MAX22200_driver.cpp:232:10:uint32_t MAX22200::buildStatusRegister(const MAX22200_StatusReg*)	24	static
-../App/MAX22200/MAX22200_driver.cpp:245:6:void MAX22200::update_status_register(MAX22200_StatusReg*, uint8_t*, uint8_t, uint8_t, uint8_t, uint8_t, uint8_t, uint8_t, uint8_t, uint8_t, uint8_t*, uint8_t*, uint8_t*, uint8_t*, uint8_t, uint8_t, uint8_t, uint8_t, uint8_t, uint8_t, uint8_t, uint8_t)	24	static
-../App/MAX22200/MAX22200_driver.cpp:274:6:void MAX22200::MAX22200_build_and_send_status_register(const MAX22200_StatusReg*)	24	static
+../App/MAX22200/MAX22200_driver.cpp:55:1:MAX22200::MAX22200()	16	static
+../App/MAX22200/MAX22200_driver.cpp:59:6:void MAX22200::MAX22200_init(const MAX22200_StatusReg*)	24	static
+../App/MAX22200/MAX22200_driver.cpp:79:10:uint8_t MAX22200::MAX22200_write_register(uint8_t, uint32_t)	32	static
+../App/MAX22200/MAX22200_driver.cpp:107:10:uint32_t MAX22200::MAX22200_read_register(uint8_t)	32	static
+../App/MAX22200/MAX22200_driver.cpp:171:10:uint32_t MAX22200::MAX22200_Set_CH(uint8_t, uint8_t, uint8_t, uint8_t, uint8_t, uint8_t, uint8_t, uint8_t, uint8_t, uint8_t, uint8_t, uint8_t, uint8_t)	24	static
+../App/MAX22200/MAX22200_driver.cpp:219:6:void MAX22200::MAX22200_print_all_registers()	24	static
+../App/MAX22200/MAX22200_driver.cpp:234:10:uint32_t MAX22200::buildStatusRegister(const MAX22200_StatusReg*)	24	static
+../App/MAX22200/MAX22200_driver.cpp:247:6:void MAX22200::update_status_register(MAX22200_StatusReg*, uint8_t*, uint8_t, uint8_t, uint8_t, uint8_t, uint8_t, uint8_t, uint8_t, uint8_t, uint8_t*, uint8_t*, uint8_t*, uint8_t*, uint8_t, uint8_t, uint8_t, uint8_t, uint8_t, uint8_t, uint8_t, uint8_t)	24	static
+../App/MAX22200/MAX22200_driver.cpp:276:6:void MAX22200::MAX22200_build_and_send_status_register(const MAX22200_StatusReg*)	24	static

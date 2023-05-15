@@ -10,7 +10,6 @@
 
 #include "Configuration.h"
 #include "../Motor/Motor.h"
-#include "../MAX22200/MAX22200_driver.h"
 
 class MotorController
 {

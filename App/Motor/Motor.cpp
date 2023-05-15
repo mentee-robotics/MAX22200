@@ -6,7 +6,9 @@
  */
 #include "Motor.h"
 
-Motor::Motor(uint8_t motorNumber,MAX22200 max) {
+Motor::Motor(uint8_t motorNumber,MAX22200 max)
+{
+  max_=max;
   m=motorNumber;
   channel1_ = (motorNumber - 1) * 2 + 1;
   channel2_ = (motorNumber - 1) * 2 + 2;
@@ -38,7 +40,6 @@ Motor::Motor(uint8_t motorNumber,MAX22200 max) {
       .DPM_EN = 0,                           // Set to 0
       .HHF_EN = 0                            // Set to 0
   };
-  max_=max;
   // Build and send configuration registers for channel 1
   uint32_t cfg1Data = buildCfgRegister(cfg1_);
   max_.MAX22200_write_register(channel1_, cfg1Data);

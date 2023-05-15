@@ -1,9 +1,9 @@
 gthr-default.h:229:1:int __gthread_key_delete(__gthread_key_t)	1
 Motor.cpp:9:1:Motor::Motor(uint8_t, MAX22200)	1
-Motor.cpp:51:6:void Motor::setPWM(uint8_t)	1
-Motor.cpp:58:6:void Motor::stop()	1
-Motor.cpp:61:6:void Motor::forward()	1
-Motor.cpp:64:6:void Motor::reverse()	1
-Motor.cpp:67:6:void Motor::sleep()	1
-Motor.cpp:70:6:void Motor::setDirection(uint8_t)	5
-Motor.cpp:92:11:uint32_t Motor::buildCfgRegister(const CFG_CH_Register&)	4
+Motor.cpp:52:6:void Motor::setPWM(uint8_t)	1
+Motor.cpp:59:6:void Motor::stop()	1
+Motor.cpp:62:6:void Motor::forward()	1
+Motor.cpp:65:6:void Motor::reverse()	1
+Motor.cpp:68:6:void Motor::sleep()	1
+Motor.cpp:71:6:void Motor::setDirection(uint8_t)	5
+Motor.cpp:93:11:uint32_t Motor::buildCfgRegister(const CFG_CH_Register&)	4

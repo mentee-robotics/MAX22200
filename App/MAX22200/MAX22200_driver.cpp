@@ -52,7 +52,9 @@
 
 
 
+MAX22200::MAX22200(){
 
+}
 
 void MAX22200::MAX22200_init(const MAX22200_StatusReg *statusReg)
 {

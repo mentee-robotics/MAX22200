@@ -36,8 +36,7 @@ App/Controller/Controller.o: ../App/Controller/Controller.cpp \
  ../App/Controller/../Motor/Motor.h \
  ../App/Controller/../Motor/../Configuration.h \
  ../App/Controller/../Motor/../MAX22200/MAX22200_driver.h \
- ../Core/Inc/gpio.h ../Core/Inc/spi.h \
- ../App/Controller/../MAX22200/MAX22200_driver.h
+ ../Core/Inc/gpio.h ../Core/Inc/spi.h
 ../App/Controller/Controller.h:
 /home/nir/Desktop/Test_MAX22200/App/Configuration.h:
 /home/nir/Desktop/Test_MAX22200/App/utils.h:
@@ -80,4 +79,3 @@ App/Controller/Controller.o: ../App/Controller/Controller.cpp \
 ../App/Controller/../Motor/../MAX22200/MAX22200_driver.h:
 ../Core/Inc/gpio.h:
 ../Core/Inc/spi.h:
-../App/Controller/../MAX22200/MAX22200_driver.h:
