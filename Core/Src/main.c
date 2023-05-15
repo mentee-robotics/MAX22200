@@ -1,4 +1,4 @@
-/* USER CODE                                                                                                                                                                                                                   BEG                                                                                                                                                                                           IN Header */
+/* USER CODE BEGIN Header */
 /**
   ******************************************************************************
   * @file           : main.c
@@ -19,8 +19,8 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "spi.h"
+#include "tim.h"
 #include "gpio.h"
-
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -73,7 +73,7 @@ int main(void)
   /* MCU Configuration--------------------------------------------------------*/
 
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
-       HAL_Init();
+  HAL_Init();
 
   /* USER CODE BEGIN Init */
 
@@ -89,19 +89,10 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_SPI1_Init();
+  MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
-  uint8_t status2 = MAX22200_write_register(0x01, 0xC343990);
-  uint8_t status3 = MAX22200_write_register(0x02, 0xC343990);
-  uint8_t status4 = MAX22200_write_register(0x03, 0xC343990);
-  uint8_t status5 = MAX22200_write_register(0x04, 0xC343990);
-  uint8_t status6 = MAX22200_write_register(0x05, 0xC343990);
-  uint8_t status7 = MAX22200_write_register(0x06, 0xC343990);
-  uint8_t status8 = MAX22200_write_register(0x07, 0xC343990);
-  uint8_t status9 = MAX22200_write_register(0x08, 0xC343990);
-
-
-
-    /* USER CODE END 2 */
+  loop_init();
+  /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
@@ -110,19 +101,7 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	  uint8_t status10 = MAX22200_write_register(0x00, 0xAA04AA01);
-	  HAL_Delay(3000);
-
-	  uint8_t status11 = MAX22200_write_register(0x00, 0x0004AA01);
-	  HAL_Delay(3000);
-	  // Setup CH1 with 80% duty cycle (HIT), then go to 10% duty cycle (Hold), use trigger-pin
-	//MAX22200_Set_CH (channel, HalfScale, HOLD_DutyCycle, TRIG_pin, HIT_DutyCycle, HIT_Time, V_Mode, HighSideMode, FREQ_CFG, SRC, OL_EN, DPM_EN, HHF_EN);
-
-	  uint8_t status12 = MAX22200_write_register(0x00, 0x5504AA01);
-	  HAL_Delay(3000);
-
-	  uint8_t status13 = MAX22200_write_register(0x00, 0x0004AA01);
-	  HAL_Delay(3000);
+  loop();
 
   }
   /* USER CODE END 3 */

@@ -51,11 +51,10 @@
 #include "MAX22200_driver.h"
 
 
-uint8_t MAX22200_tx[16];  // SPI TX buffer
-uint8_t MAX22200_rx[16];  // SPI RX buffer
 
 
-void MAX22200_init(const MAX22200_StatusReg *statusReg)
+
+void MAX22200::MAX22200_init(const MAX22200_StatusReg *statusReg)
 {
 	// Enable the device
 	MAX22200_ENABLE_HIGH
@@ -66,13 +65,16 @@ void MAX22200_init(const MAX22200_StatusReg *statusReg)
 
 	MAX22200_CS_HIGH  // Make sure CS  pin is high
 	MAX22200_CMD_LOW  // Make sure CMD pin is low
+	// Build the status register
+	uint32_t statusRegister = buildStatusRegister(statusReg);
 
-    MAX22200_write_register(MAX22200_STATUS, statusReg);
+	// Send the register via SPI
+	MAX22200_write_register(MAX22200_STATUS, statusRegister);
 }
 
 
 
-uint8_t  MAX22200_write_register(uint8_t reg_adr, uint32_t data)
+uint8_t  MAX22200::MAX22200_write_register(uint8_t reg_adr, uint32_t data)
 {
     // first we need to writ the Command byte to setup the SPI transfer
 	MAX22200_tx[0] = ((reg_adr<<1) & 0x7e) | 0x80;                    // MSB = 1 -> write - LSB = 0 -> 32 bit register access
@@ -100,7 +102,7 @@ uint8_t  MAX22200_write_register(uint8_t reg_adr, uint32_t data)
 	return MAX22200_rx[0];                                            // return the status byte
 }
 
-uint32_t MAX22200_read_register (uint8_t reg_adr)
+uint32_t MAX22200::MAX22200_read_register (uint8_t reg_adr)
 {
     // first we need to write the Command byte to setup the SPI transfer
 	MAX22200_tx[0] = ((reg_adr<<1) & 0x7e);                           // MSB = 0 -> read - LSB = 0 -> 32 bit register access
@@ -164,22 +166,22 @@ uint32_t MAX22200_read_register (uint8_t reg_adr)
 //*
 //*
 //********************************************************************/
-void MAX22200_Set_CH (uint8_t channel, uint8_t HalfScale, uint8_t HOLD_DutyCycle, uint8_t TRIG_pin, uint8_t HIT_DutyCycle,  uint8_t HIT_Time, uint8_t V_Mode, uint8_t HighSideMode, uint8_t FREQ_CFG, uint8_t SRC, uint8_t OL_EN, uint8_t DPM_EN, uint8_t HHF_EN)
+uint32_t MAX22200::MAX22200_Set_CH (uint8_t channel, uint8_t HalfScale, uint8_t HOLD_DutyCycle, uint8_t TRIG_pin, uint8_t HIT_DutyCycle,  uint8_t HIT_Time, uint8_t V_Mode, uint8_t HighSideMode, uint8_t FREQ_CFG, uint8_t SRC, uint8_t OL_EN, uint8_t DPM_EN, uint8_t HHF_EN)
 {
 	// Check the data if it makes sense
-	if ((channel > 8) || (channel < 1))  return;
-	if  (HalfScale       > 1)            return;
-	if  (HOLD_DutyCycle  > 127)          return;
-	if  (TRIG_pin        > 1)            return;
-	if  (HIT_DutyCycle   > 127)          return;
-	if  (HIT_Time        > 255)          return;
-	if  (V_Mode          > 1)            return;
-	if  (HighSideMode    > 1)            return;
-	if  (FREQ_CFG        > 3)            return;
-	if  (SRC             > 1)            return;
-	if  (OL_EN           > 1)            return;
-	if  (DPM_EN          > 1)            return;
-	if  (HHF_EN          > 1)            return;
+	if ((channel > 8) || (channel < 1))  return 0;
+	if  (HalfScale       > 1)            return 0;
+	if  (HOLD_DutyCycle  > 127)          return 0;
+	if  (TRIG_pin        > 1)            return 0;
+	if  (HIT_DutyCycle   > 127)          return 0;
+	if  (HIT_Time        > 255)          return 0;
+	if  (V_Mode          > 1)            return 0;
+	if  (HighSideMode    > 1)            return 0;
+	if  (FREQ_CFG        > 3)            return 0;
+	if  (SRC             > 1)            return 0;
+	if  (OL_EN           > 1)            return 0;
+	if  (DPM_EN          > 1)            return 0;
+	if  (HHF_EN          > 1)            return 0;
 
 	// construct the 32-bit data
 	uint32_t data  = 0;
@@ -196,8 +198,8 @@ void MAX22200_Set_CH (uint8_t channel, uint8_t HalfScale, uint8_t HOLD_DutyCycle
 	         data |= ((OL_EN          <<  2) & BIT_CH_OL_EN);
 	         data |= ((DPM_EN         <<  1) & BIT_CH_DPM_EN);
 	         data |= ((HHF_EN         <<  0) & BIT_CH_HHF_EN);
-
-   MAX22200_write_register(channel, data);
+	 return data;
+//   MAX22200_write_register(channel, data);
 }
 
 //********************************************************************
@@ -212,7 +214,7 @@ void MAX22200_Set_CH (uint8_t channel, uint8_t HalfScale, uint8_t HOLD_DutyCycle
 //*
 //*
 //********************************************************************/
-void MAX22200_print_all_registers ()
+void MAX22200::MAX22200_print_all_registers ()
 {
 	uint32_t result = 0;
 
@@ -227,7 +229,7 @@ void MAX22200_print_all_registers ()
 
 
 // Function to build STATUS register
-uint32_t buildStatusRegister(const MAX22200_StatusReg* status) {
+uint32_t MAX22200::buildStatusRegister(const MAX22200_StatusReg* status) {
     uint32_t result = 0;
 
     result |= (*status->ONCH) << 24;
@@ -240,7 +242,7 @@ uint32_t buildStatusRegister(const MAX22200_StatusReg* status) {
     return result;
 }
 
-void update_status_register(MAX22200_StatusReg *statusReg, uint8_t ONCH[], uint8_t M_OVT, uint8_t M_OCP, uint8_t M_OLF, uint8_t M_HHF, uint8_t M_DPM, uint8_t M_COMF, uint8_t M_UVM, uint8_t FREQM, uint8_t CM76[], uint8_t CM54[], uint8_t CM32[], uint8_t CM10[], uint8_t OVT, uint8_t OCP, uint8_t OLF, uint8_t HHF, uint8_t DPM, uint8_t COMER, uint8_t UVM, uint8_t ACTIVE)
+void MAX22200::update_status_register(MAX22200_StatusReg *statusReg, uint8_t ONCH[], uint8_t M_OVT, uint8_t M_OCP, uint8_t M_OLF, uint8_t M_HHF, uint8_t M_DPM, uint8_t M_COMF, uint8_t M_UVM, uint8_t FREQM, uint8_t CM76[], uint8_t CM54[], uint8_t CM32[], uint8_t CM10[], uint8_t OVT, uint8_t OCP, uint8_t OLF, uint8_t HHF, uint8_t DPM, uint8_t COMER, uint8_t UVM, uint8_t ACTIVE)
 {
     // Update the status struct
     memcpy(statusReg->ONCH, ONCH, sizeof(statusReg->ONCH));
@@ -269,7 +271,7 @@ void update_status_register(MAX22200_StatusReg *statusReg, uint8_t ONCH[], uint8
     MAX22200_build_and_send_status_register(statusReg);
 }
 
-void MAX22200_build_and_send_status_register(const MAX22200_StatusReg *statusReg) {
+void MAX22200::MAX22200_build_and_send_status_register(const MAX22200_StatusReg *statusReg) {
 
     // Build the status register
     uint32_t statusRegister = buildStatusRegister(statusReg);

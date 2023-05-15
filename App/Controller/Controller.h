@@ -10,13 +10,17 @@
 
 #include "Configuration.h"
 #include "../Motor/Motor.h"
+#include "../MAX22200/MAX22200_driver.h"
 
-class MotorController {
+class MotorController
+{
 public:
     MotorController();
     void setMotorPWM(uint8_t motorNumber, uint8_t pwm);
     void stopMotor(uint8_t motorNumber);
     void setMotorDirection(uint8_t motorNumber, uint8_t mode);
+    void update(void);
+	MAX22200 max_;
 
 private:
     std::vector<Motor> motors;

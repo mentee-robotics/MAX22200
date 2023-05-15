@@ -11,5 +11,7 @@
 #include "utils.h"
 #include "common_includes.h"
 
+#include "tim.h"
+#include "stm32g4xx_it.h"
 
 #endif

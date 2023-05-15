@@ -2,11 +2,8 @@ App/Controller/Controller.o: ../App/Controller/Controller.cpp \
  ../App/Controller/Controller.h \
  /home/nir/Desktop/Test_MAX22200/App/Configuration.h \
  /home/nir/Desktop/Test_MAX22200/App/utils.h \
- /home/nir/Desktop/Test_MAX22200/App/common_includes.h \
- ../App/Controller/../Motor/Motor.h \
- /home/nir/Desktop/Test_MAX22200/Drivers/MAX22200/MAX22200_driver.h \
- ../Core/Inc/gpio.h ../Core/Inc/main.h \
- ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal.h \
+ /home/nir/Desktop/Test_MAX22200/App/common_includes.h ../Core/Inc/tim.h \
+ ../Core/Inc/main.h ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal.h \
  ../Core/Inc/stm32g4xx_hal_conf.h \
  ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_rcc.h \
  ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h \
@@ -33,14 +30,19 @@ App/Controller/Controller.o: ../App/Controller/Controller.cpp \
  ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_pwr_ex.h \
  ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_spi.h \
  ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_spi_ex.h \
- /home/nir/Desktop/Test_MAX22200/App/loop.h ../Core/Inc/spi.h
+ ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_tim.h \
+ ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_tim_ex.h \
+ /home/nir/Desktop/Test_MAX22200/App/loop.h ../Core/Inc/stm32g4xx_it.h \
+ ../App/Controller/../Motor/Motor.h \
+ ../App/Controller/../Motor/../Configuration.h \
+ ../App/Controller/../Motor/../MAX22200/MAX22200_driver.h \
+ ../Core/Inc/gpio.h ../Core/Inc/spi.h \
+ ../App/Controller/../MAX22200/MAX22200_driver.h
 ../App/Controller/Controller.h:
 /home/nir/Desktop/Test_MAX22200/App/Configuration.h:
 /home/nir/Desktop/Test_MAX22200/App/utils.h:
 /home/nir/Desktop/Test_MAX22200/App/common_includes.h:
-../App/Controller/../Motor/Motor.h:
-/home/nir/Desktop/Test_MAX22200/Drivers/MAX22200/MAX22200_driver.h:
-../Core/Inc/gpio.h:
+../Core/Inc/tim.h:
 ../Core/Inc/main.h:
 ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal.h:
 ../Core/Inc/stm32g4xx_hal_conf.h:
@@ -69,5 +71,13 @@ App/Controller/Controller.o: ../App/Controller/Controller.cpp \
 ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_pwr_ex.h:
 ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_spi.h:
 ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_spi_ex.h:
+../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_tim.h:
+../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_tim_ex.h:
 /home/nir/Desktop/Test_MAX22200/App/loop.h:
+../Core/Inc/stm32g4xx_it.h:
+../App/Controller/../Motor/Motor.h:
+../App/Controller/../Motor/../Configuration.h:
+../App/Controller/../Motor/../MAX22200/MAX22200_driver.h:
+../Core/Inc/gpio.h:
 ../Core/Inc/spi.h:
+../App/Controller/../MAX22200/MAX22200_driver.h:

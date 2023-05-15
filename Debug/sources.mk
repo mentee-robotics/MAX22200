@@ -33,10 +33,10 @@ CPP_DEPS :=
 # Every subdirectory with source files must be described here
 SUBDIRS := \
 App/Controller \
+App/MAX22200 \
 App/Motor \
 App \
 Core/Src \
 Core/Startup \
-Drivers/MAX22200 \
 Drivers/STM32G4xx_HAL_Driver/Src \
 

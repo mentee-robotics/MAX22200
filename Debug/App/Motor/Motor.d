@@ -1,6 +1,6 @@
 App/Motor/Motor.o: ../App/Motor/Motor.cpp ../App/Motor/Motor.h \
- /home/nir/Desktop/Test_MAX22200/Drivers/MAX22200/MAX22200_driver.h \
- ../Core/Inc/gpio.h ../Core/Inc/main.h \
+ ../App/Motor/../Configuration.h ../App/Motor/../utils.h \
+ ../App/Motor/../common_includes.h ../Core/Inc/tim.h ../Core/Inc/main.h \
  ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal.h \
  ../Core/Inc/stm32g4xx_hal_conf.h \
  ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_rcc.h \
@@ -28,10 +28,16 @@ App/Motor/Motor.o: ../App/Motor/Motor.cpp ../App/Motor/Motor.h \
  ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_pwr_ex.h \
  ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_spi.h \
  ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_spi_ex.h \
- /home/nir/Desktop/Test_MAX22200/App/loop.h ../Core/Inc/spi.h
+ ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_tim.h \
+ ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_tim_ex.h \
+ /home/nir/Desktop/Test_MAX22200/App/loop.h ../Core/Inc/stm32g4xx_it.h \
+ ../App/Motor/../MAX22200/MAX22200_driver.h ../Core/Inc/gpio.h \
+ ../Core/Inc/spi.h
 ../App/Motor/Motor.h:
-/home/nir/Desktop/Test_MAX22200/Drivers/MAX22200/MAX22200_driver.h:
-../Core/Inc/gpio.h:
+../App/Motor/../Configuration.h:
+../App/Motor/../utils.h:
+../App/Motor/../common_includes.h:
+../Core/Inc/tim.h:
 ../Core/Inc/main.h:
 ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal.h:
 ../Core/Inc/stm32g4xx_hal_conf.h:
@@ -60,5 +66,10 @@ App/Motor/Motor.o: ../App/Motor/Motor.cpp ../App/Motor/Motor.h \
 ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_pwr_ex.h:
 ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_spi.h:
 ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_spi_ex.h:
+../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_tim.h:
+../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_tim_ex.h:
 /home/nir/Desktop/Test_MAX22200/App/loop.h:
+../Core/Inc/stm32g4xx_it.h:
+../App/Motor/../MAX22200/MAX22200_driver.h:
+../Core/Inc/gpio.h:
 ../Core/Inc/spi.h:

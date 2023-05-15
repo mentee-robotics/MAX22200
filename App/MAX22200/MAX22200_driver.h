@@ -46,14 +46,12 @@
 * ownership rights.
 *******************************************************************************
 */
-#include <stdint.h>
-#include <string.h>
-#ifndef MAX22200_DRIVER_H
-#define MAX22200_DRIVER_H
-
+#include <cstdint>
+#include <cstring>
 #include "gpio.h"
 #include "spi.h"
-
+#ifndef MAX22200_DRIVER_HPP
+#define MAX22200_DRIVER_HPP
 
 // define MAX22514 register adresses
 #define  MAX22200_STATUS      0x00
@@ -131,41 +129,52 @@ typedef struct {
 
 
 
-void MAX22200_init(const MAX22200_StatusReg *statusReg)
 
-uint8_t  MAX22200_write_register(uint8_t reg_adr, uint32_t data);   // returns the status byte
-uint32_t MAX22200_read_register (uint8_t reg_adr);                  // returns the register content
 
-//********************************************************************
-//*
-//* Function:    MAX22200_Set_CH
-//* Description: Set's up one Channel for driving
-//*
-//* Input:
-//*               channel          1 - 8  -> Selected channel to setup (We're counting Board Channels !! NOT Chip Channels )
-//*               HalfScale        0 = FullScale      1 = HalfScale
-//*               HOLD_DutyCycle   0 = OFF sate,      1-126 duty-cycle     127 ON state
-//*               TRIG_pin         0 = SPI Control    1 = TrigPin Control
-//*               HIT_DutyCycle    0 = OFF sate,      1-126 duty-cycle     127 ON state
-//*               HIT_Time         0 = no Hit         1-254 x40/F_Chop     255 continuous HIT
-//*               V_Mode           0 = CurrentMode    1 = VoltageMode
-//*               HighSideMode     0 = LowSide Mode   1 = HighSide Mode
-//*               FREQ_CFG         0 = FreqMain/4     1 = FreqMain/3       2 = FreqMain/2  3 = FreqMain
-//*               SRC              0 = No Slew Ctrl   1 = Slew rate controlled
-//*               OL_EN            0 = No OpenLoadD   1 = Open Load detection enabled
-//*               DPM_EN           0 = No PlungerD    1 = Plunger movement detect enabled
-//*               HHF_EN           0 = No HitCurr Chk 1 = Hit Current Check enabled
-//*
-//* Output, none
-//*
-//*
-//********************************************************************/
-void MAX22200_Set_CH (uint8_t channel, uint8_t HalfScale, uint8_t HOLD_DutyCycle, uint8_t TRIG_pin, uint8_t HIT_DutyCycle,  uint8_t HIT_Time, uint8_t V_Mode, uint8_t HighSideMode, uint8_t FREQ_CFG, uint8_t SRC, uint8_t OL_EN, uint8_t DPM_EN, uint8_t HHF_EN);
 
-// for debugging only
-void MAX22200_print_all_registers ();
-uint32_t buildStatusRegister(const MAX22200_StatusReg* status);
-void update_status_register(MAX22200_StatusReg *statusReg, uint8_t ONCH[], uint8_t M_OVT, uint8_t M_OCP, uint8_t M_OLF, uint8_t M_HHF, uint8_t M_DPM, uint8_t M_COMF, uint8_t M_UVM, uint8_t FREQM, uint8_t CM76[], uint8_t CM54[], uint8_t CM32[], uint8_t CM10[], uint8_t OVT, uint8_t OCP, uint8_t OLF, uint8_t HHF, uint8_t DPM, uint8_t COMER, uint8_t UVM, uint8_t ACTIVE);
-void MAX22200_build_and_send_status_register(const MAX22200_StatusReg *statusReg);
+
+/* Definitions and structures remain the same */
+
+class MAX22200 {
+    private:
+        uint8_t MAX22200_tx[16];  // SPI TX buffer
+        uint8_t MAX22200_rx[16];  // SPI RX buffer
+
+    public:
+        MAX22200();
+        void MAX22200_init(const MAX22200_StatusReg *statusReg);
+        uint8_t  MAX22200_write_register(uint8_t reg_adr, uint32_t data);   // returns the status byte
+        uint32_t MAX22200_read_register (uint8_t reg_adr);                  // returns the register content
+        //********************************************************************
+        //*
+        //* Function:    MAX22200_Set_CH
+        //* Description: Set's up one Channel for driving
+        //*
+        //* Input:
+        //*               channel          1 - 8  -> Selected channel to setup (We're counting Board Channels !! NOT Chip Channels )
+        //*               HalfScale        0 = FullScale      1 = HalfScale
+        //*               HOLD_DutyCycle   0 = OFF sate,      1-126 duty-cycle     127 ON state
+        //*               TRIG_pin         0 = SPI Control    1 = TrigPin Control
+        //*               HIT_DutyCycle    0 = OFF sate,      1-126 duty-cycle     127 ON state
+        //*               HIT_Time         0 = no Hit         1-254 x40/F_Chop     255 continuous HIT
+        //*               V_Mode           0 = CurrentMode    1 = VoltageMode
+        //*               HighSideMode     0 = LowSide Mode   1 = HighSide Mode
+        //*               FREQ_CFG         0 = FreqMain/4     1 = FreqMain/3       2 = FreqMain/2  3 = FreqMain
+        //*               SRC              0 = No Slew Ctrl   1 = Slew rate controlled
+        //*               OL_EN            0 = No OpenLoadD   1 = Open Load detection enabled
+        //*               DPM_EN           0 = No PlungerD    1 = Plunger movement detect enabled
+        //*               HHF_EN           0 = No HitCurr Chk 1 = Hit Current Check enabled
+        //*
+        //* Output, none
+        //*
+        //*
+        //********************************************************************/
+
+        uint32_t MAX22200_Set_CH (uint8_t channel, uint8_t HalfScale, uint8_t HOLD_DutyCycle, uint8_t TRIG_pin, uint8_t HIT_DutyCycle,  uint8_t HIT_Time, uint8_t V_Mode, uint8_t HighSideMode, uint8_t FREQ_CFG, uint8_t SRC, uint8_t OL_EN, uint8_t DPM_EN, uint8_t HHF_EN);
+        void MAX22200_print_all_registers ();
+        uint32_t buildStatusRegister(const MAX22200_StatusReg* status);
+        void update_status_register(MAX22200_StatusReg *statusReg, uint8_t ONCH[], uint8_t M_OVT, uint8_t M_OCP, uint8_t M_OLF, uint8_t M_HHF, uint8_t M_DPM, uint8_t M_COMF, uint8_t M_UVM, uint8_t FREQM, uint8_t CM76[], uint8_t CM54[], uint8_t CM32[], uint8_t CM10[], uint8_t OVT, uint8_t OCP, uint8_t OLF, uint8_t HHF, uint8_t DPM, uint8_t COMER, uint8_t UVM, uint8_t ACTIVE);
+        void MAX22200_build_and_send_status_register(const MAX22200_StatusReg *statusReg);
+};
 
 #endif
